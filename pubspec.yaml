@@ -1,0 +1,43 @@
+name: ai_video_editor
+description: "AI-powered video editor with human-in-the-loop editing"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  file_picker: ^8.0.5
+  path_provider: ^2.1.4
+  permission_handler: ^11.3.1
+  video_player: ^2.8.6
+  image: ^4.2.0
+  uuid: ^4.4.0
+  collection: ^1.18.0
+  flutter_colorpicker: ^1.1.0
+  google_fonts: ^6.2.1
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  path: ^1.9.0
+  meta: ^1.15.0
+  # FFmpeg integration
+  # Android/iOS/Desktop: Use ffmpeg_kit_flutter (maintained version)
+  # Web: Use ffmpeg.wasm via JS interop
+  ffmpeg_kit_flutter: ^6.0.0
+  web: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+# Platform-specific configurations
+flutter_assets:
+  - assets/

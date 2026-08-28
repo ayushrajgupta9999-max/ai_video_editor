@@ -1,0 +1,84 @@
+# Flutter/Dart
+.dart_tool/
+build/
+*.dart_tool/
+.packages
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.app
+*.dmg
+*.exe
+*.msi
+*.snap
+*.flatpak
+
+# Web build
+build/web/
+
+# Desktop build
+build/linux/
+build/macos/
+build/windows/
+
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
+android/gradle.properties
+
+# iOS/macOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+macos/Pods/
+macos/.symlinks/
+macos/Flutter/Generated.xcconfig
+macos/Flutter/flutter_export_environment.sh
+
+# Linux
+linux/CMakeFiles/
+linux/build/
+
+# Windows
+windows/build/
+windows/CMakeFiles/
+
+# Secrets/Keys
+*.keystore
+*.jks
+*.p12
+*.pem
+google-services.json
+GoogleService-Info.plist
+
+# Logs
+*.log
+*.crash
+
+# Test coverage
+coverage/
+lcov.info
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+
+# Flutter specific
+flutter_*.png
