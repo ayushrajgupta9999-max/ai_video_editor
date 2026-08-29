@@ -1,28 +1,21 @@
-pluginManagement {
-    val flutterSdkPath = run {
-        val properties = java.util.Properties()
-        val propertiesFile = java.io.File(settingsDir, "local.properties")
-        if (propertiesFile.exists()) {
-            propertiesFile.reader(Charsets.UTF_8).use { properties.load(it) }
-        }
-        val sdkPath = properties.getProperty("flutter.sdk")
-        require(sdkPath != null) { "flutter.sdk not set in local.properties" }
-        sdkPath
-    }
-
-    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
-
+allprojects {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
 
-plugins {
-    id("dev.flutter.flutter-plugin-loader") version "1.0.0"
-    id("com.android.application") apply false
-    id("org.jetbrains.kotlin.android") apply false
+val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
+rootProject.layout.buildDirectory.value(newBuildDir)
+
+subprojects {
+    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
+    project.layout.buildDirectory.value(newSubprojectBuildDir)
+}
+subprojects {
+    project.evaluationDependsOn(":app")
 }
 
-include(":app")
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
+}
