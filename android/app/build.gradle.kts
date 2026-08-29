@@ -1,13 +1,12 @@
 plugins {
     id("com.android.application")
-    id("dev.flutter.flutter-gradle-plugin")
-    id("org.jetbrains.kotlin.android") version "1.9.20" apply false
+    id("org.jetbrains.kotlin.android")
+    id("dev.flutter.flutter-plugin-loader")
 }
 
 android {
-    namespace = "com.aivideo.ai_video_editor"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    namespace = "com.example.ai_video_editor"
+    compileSdk = 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -19,73 +18,20 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.aivideo.ai_video_editor"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
-        multiDexEnabled = true
-        // FFmpegKitNext requires these
-        ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64")
-        }
+        applicationId = "com.example.ai_video_editor"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0.0"
     }
 
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
-        debug {
-            isDebuggable = true
-        }
-    }
-
-    // FFmpegKitNext packaging options
-    packaging {
-        resources {
-            pickFirsts += listOf(
-                "lib/armeabi-v7a/libffmpeg.so",
-                "lib/arm64-v8a/libffmpeg.so",
-                "lib/x86_64/libffmpeg.so",
-                "META-INF/LICENSE",
-                "META-INF/NOTICE"
-            )
-        }
-        jniLibs {
-            pickFirsts += listOf(
-                "lib/armeabi-v7a/libffmpeg.so",
-                "lib/arm64-v8a/libffmpeg.so",
-                "lib/x86_64/libffmpeg.so"
-            )
-            keepDebugSymbols += listOf(
-                "lib/armeabi-v7a/libffmpeg.so",
-                "lib/arm64-v8a/libffmpeg.so",
-                "lib/x86_64/libffmpeg.so"
-            )
-        }
-    }
-
-    aaptOptions {
-        noCompress = listOf("tflite", "lite", "bin")
-    }
-
-    // Split per ABI for smaller APKs
-    splits {
-        abi {
-            enable = true
-            reset()
-            include("armeabi-v7a", "arm64-v8a", "x86_64")
-            universalApk = false
         }
     }
 }
 
-dependencies {
-    implementation("androidx.multidex:multidex:2.0.1")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
-    implementation("androidx.activity:activity-ktx:1.9.0")
-    // FFmpegKitNext will be added via Flutter plugin
+flutter {
+    source = "../.."
 }
